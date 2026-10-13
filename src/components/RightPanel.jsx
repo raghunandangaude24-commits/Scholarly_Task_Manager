@@ -2,6 +2,19 @@ import { useState } from 'react'
 import { SUBJECTS } from '../data/tasks.js'
 import { SendIcon } from './Icons.jsx'
 
+const AVATAR_COLORS = [
+  { bg: 'rgba(99, 102, 241, 0.14)', fg: '#6366f1' },
+  { bg: 'rgba(16, 185, 129, 0.16)', fg: '#10b981' },
+  { bg: 'rgba(245, 158, 11, 0.18)', fg: '#d97706' },
+  { bg: 'rgba(236, 72, 153, 0.14)', fg: '#ec4899' },
+  { bg: 'rgba(14, 165, 233, 0.16)', fg: '#0284c7' },
+]
+
+const avatarStyle = (name) => {
+  const c = AVATAR_COLORS[name.charCodeAt(0) % AVATAR_COLORS.length]
+  return { '--avatar-bg': c.bg, '--avatar-fg': c.fg }
+}
+
 export default function RightPanel({ task, notifications, onAddComment }) {
   const [draft, setDraft] = useState('')
   const subject = task ? SUBJECTS.find((s) => s.id === task.subject) : null
@@ -60,7 +73,9 @@ export default function RightPanel({ task, notifications, onAddComment }) {
               {task.comments.length === 0 && <li className="comments__empty">No comments yet.</li>}
               {task.comments.map((c) => (
                 <li key={c.id} className="comment">
-                  <span className="comment__avatar">{c.author.charAt(0)}</span>
+                  <span className="comment__avatar" style={avatarStyle(c.author)}>
+                    {c.author.charAt(0)}
+                  </span>
                   <div>
                     <strong>{c.author}</strong>
                     <p>{c.text}</p>

@@ -1,4 +1,50 @@
-# React + Vite
+# Scholarly Task Manager
+
+A classroom task board (React + Vite) with an Express + MySQL REST API in `backend/`.
+
+## Frontend
+
+```bash
+npm install
+npm run dev      # http://localhost:5173
+```
+
+Colours live in `src/index.css` as CSS variables (`--accent`, `--todo`, `--progress`, `--review`,
+`--done`, subject and priority colours). Components read them through `--col`, `--card-accent`
+and `--prio` so each column, card and badge picks up its own hue.
+
+## Backend
+
+```bash
+cd backend
+npm install
+# 1. create the schema + sample rows (needs a local MySQL server)
+npm run db:create
+npm run db:seed
+# 2. set DB_USER / DB_PASSWORD in backend/.env
+npm run dev      # or: npm start  →  http://localhost:5000
+```
+
+From the repo root you can also use `npm run server` / `npm run server:start`.
+
+### API
+
+| Method | Route                     | Description                              |
+| ------ | ------------------------- | ---------------------------------------- |
+| GET    | `/api/health`             | Service ping                             |
+| GET    | `/api/tasks`              | List tasks (`?subject=`, `?status=`, `?q=`) |
+| GET    | `/api/tasks/:id`          | Single task with comments                |
+| POST   | `/api/tasks`              | Create a task                            |
+| PUT    | `/api/tasks/:id`          | Update a task (partial body ok)          |
+| DELETE | `/api/tasks/:id`          | Delete a task (comments cascade)         |
+| POST   | `/api/tasks/:id/comments` | Add a comment `{ text, author? }`        |
+
+Files: `server.js` (app + middleware), `config/db.js` (mysql2 pool),
+`routes/taskRoutes.js`, `controllers/taskController.js`, `sql/schema.sql`, `sql/seed.sql`.
+
+---
+
+# React + Vite template notes
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

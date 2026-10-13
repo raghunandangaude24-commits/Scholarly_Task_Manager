@@ -1,10 +1,9 @@
 import { SearchIcon, MenuIcon, PlusIcon } from './Icons.jsx'
+import { SUBJECTS } from '../data/tasks.js'
 
 const TABS = [
-  { id: 'all', label: 'All' },
-  { id: 'maths', label: 'Maths' },
-  { id: 'science', label: 'Science' },
-  { id: 'english', label: 'English' },
+  { id: 'all', label: 'All', color: 'var(--accent)' },
+  ...SUBJECTS.map((s) => ({ id: s.id, label: s.name, color: s.color })),
 ]
 
 export default function Toolbar({ query, onQueryChange, onOpenMenu, subjectFilter, onSelectSubject, onAdd }) {
@@ -36,8 +35,10 @@ export default function Toolbar({ query, onQueryChange, onOpenMenu, subjectFilte
           <button
             key={t.id}
             className={subjectFilter === t.id ? 'is-active' : ''}
+            style={{ '--tab-color': t.color }}
             onClick={() => onSelectSubject(t.id)}
           >
+            <i className="tabs__dot" />
             {t.label}
           </button>
         ))}

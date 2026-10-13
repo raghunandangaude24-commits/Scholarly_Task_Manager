@@ -6,15 +6,42 @@
   --text: #4b5162;
   --text-h: #161a25;
   --muted: #9299ad;
+
+  /* Brand */
   --accent: #6366f1;
+  --accent-2: #8b5cf6;
+  --accent-3: #ec4899;
   --accent-soft: rgba(99, 102, 241, 0.1);
+  --accent-grad: linear-gradient(135deg, #6366f1 0%, #8b5cf6 55%, #ec4899 100%);
   --danger: #ef4444;
+  --danger-soft: rgba(239, 68, 68, 0.12);
+
+  /* Status colours */
   --todo: #f59e0b;
   --progress: #6366f1;
   --review: #ec4899;
   --done: #10b981;
+  --todo-soft: rgba(245, 158, 11, 0.12);
+  --progress-soft: rgba(99, 102, 241, 0.12);
+  --review-soft: rgba(236, 72, 153, 0.12);
+  --done-soft: rgba(16, 185, 129, 0.12);
+
+  /* Subject colours (kept in sync with src/data/tasks.js) */
+  --maths: #6366f1;
+  --science: #10b981;
+  --english: #f59e0b;
+
+  /* Priority colours */
+  --prio-high: #ef4444;
+  --prio-medium: #f59e0b;
+  --prio-low: #10b981;
+  --prio-high-soft: rgba(239, 68, 68, 0.12);
+  --prio-medium-soft: rgba(245, 158, 11, 0.14);
+  --prio-low-soft: rgba(16, 185, 129, 0.14);
+
   --shadow: 0 10px 30px rgba(23, 27, 46, 0.07);
   --shadow-sm: 0 2px 8px rgba(23, 27, 46, 0.06);
+  --shadow-accent: 0 8px 20px rgba(99, 102, 241, 0.28);
   --radius: 14px;
   --font: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
 }
@@ -34,7 +61,12 @@ body {
   font-family: var(--font);
   font-size: 14px;
   color: var(--text);
-  background: var(--bg);
+  background:
+    radial-gradient(1100px 520px at 12% -10%, rgba(99, 102, 241, 0.13), transparent 60%),
+    radial-gradient(900px 480px at 95% 0%, rgba(236, 72, 153, 0.1), transparent 55%),
+    radial-gradient(800px 500px at 60% 110%, rgba(16, 185, 129, 0.1), transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
 }
 

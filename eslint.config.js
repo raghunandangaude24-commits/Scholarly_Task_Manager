@@ -18,4 +18,16 @@ export default defineConfig([
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
   },
+  {
+    // Express API (CommonJS, runs in Node)
+    files: ['backend/**/*.js'],
+    languageOptions: {
+      globals: globals.node,
+      sourceType: 'commonjs',
+    },
+    rules: {
+      // Express error handlers must declare 4 arguments
+      'no-unused-vars': ['error', { args: 'none' }],
+    },
+  },
 ])
